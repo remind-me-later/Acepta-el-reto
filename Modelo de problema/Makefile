@@ -1,20 +1,25 @@
 .POSIX:
+.SUFFIXES:
 
-CWARN= -Wall -Wextra -Werror -pedantic
-CFLAGS= -O3
+PROGRAM = modelo
 
-all: a.out
+CC     = cc
+CWARN  = -Wall -Wextra -Wdeclaration-after-statement -Werror -pedantic
+CFLAGS = -std=c11 -O3 -s
 
-a.out: main.c
-	cc $(CFLAGS) $(CWARN) -o a.out $^
+.PHONY: all
+all: $(PROGRAM).out
 
-test: tests/input.txt tests/expected.txt a.out
-	@./a.out <$< 2>&1 | diff -q $(word 2, $?) - >/dev/null || \
-		(echo "Test failed" && exit 1)
-	@echo "Success, tests passed"
+$(PROGRAM).out: $(PROGRAM).c
+	cc $(CFLAGS) $(CWARN) -o $@ $^
 
+.PHONY: test
+test: tests/input.txt tests/expected.txt $(PROGRAM).out
+	@./$(PROGRAM).out <$< 2>&1 | diff -q $(word 2, $?) - >/dev/null || \
+		(echo "Test failed" && exit 1) && \
+		(echo "Success, tests passed")
+
+.PHONY: clean
 clean:
-	rm a.out
-
-.PHONY: clean test
+	rm -f $(PROGRAM).out
 
