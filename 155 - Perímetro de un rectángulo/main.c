@@ -51,7 +51,7 @@ int main(void) {
 	fscanu(x);
 	fscanu(y);
 
-	fprintu((x + y) << 1);
+	fprintu((x + y) * 2);
 	putchar_unlocked('\n');
     }
 }
