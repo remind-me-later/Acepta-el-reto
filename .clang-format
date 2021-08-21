@@ -4,4 +4,3 @@ IndentWidth: 4
 UseTab: Always
 ColumnLimit: 80
 ---
-IndentCaseLabels: false
