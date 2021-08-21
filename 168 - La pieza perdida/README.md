@@ -1,1 +1,3 @@
-https://www.aceptaelreto.com/problem/statement.php?id=168
+# La pieza perdida
+
+## [Enunciado](https://www.aceptaelreto.com/problem/statement.php?id=168)
