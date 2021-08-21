@@ -5,13 +5,13 @@
 // bastante más rápido que scanf
 #define fscanu(x)                                                              \
     do {                                                                       \
-        char _;                                                                \
-        while ((x = getchar_unlocked()) < '0')                                 \
-            ;                                                                  \
-        x -= '0';                                                              \
-        while ('0' <= (_ = getchar_unlocked())) {                              \
-            x = (x << 3) + (x << 1) + _ - '0';                                 \
-        }                                                                      \
+	char _;                                                                \
+	while ((x = getchar_unlocked()) < '0')                                 \
+	    ;                                                                  \
+	x -= '0';                                                              \
+	while ('0' <= (_ = getchar_unlocked())) {                              \
+	    x = (x << 3) + (x << 1) + _ - '0';                                 \
+	}                                                                      \
     } while (0);
 
 int main(void) {
@@ -23,29 +23,29 @@ L1:
     fscanu(casos);
 
     if (!casos)
-        return 0;
+	return 0;
 
     fscanu(prev);
     inc = true;
     dec = true;
 
     while (--casos) {
-        fscanu(cur);
+	fscanu(cur);
 
-        inc = inc && prev < cur;
-        dec = dec && prev > cur;
+	inc = inc && prev < cur;
+	dec = dec && prev > cur;
 
-        if (!inc && !dec) {
-            puts("DESCONOCIDOS");
-            while (--casos) {
-                getchar_unlocked();
-                while (getchar_unlocked() >= '0')
-                    ;
-            }
-            goto L1;
-        }
+	if (!inc && !dec) {
+	    puts("DESCONOCIDOS");
+	    while (--casos) {
+		getchar_unlocked();
+		while (getchar_unlocked() >= '0')
+		    ;
+	    }
+	    goto L1;
+	}
 
-        prev = cur;
+	prev = cur;
     }
 
     puts("DALTON");
